@@ -2,24 +2,18 @@ package cn.edu.pku.zhangqixun.miniweather;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.content.SharedPreferencesCompat;
 import android.util.Log;
-import android.util.Xml;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ShareActionProvider;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
-import org.w3c.dom.Text;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -45,6 +39,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private TextView cityTv, timeTv, humidityTv, weekTv, pmDataTv, pmQualityTv,
             temperatureTv, climateTv, windTv, city_name_Tv,timepTv;
     private ImageView weatherImg, pmImg;
+
 
     private Handler mHandler = new Handler() {
         public void handleMessage(android.os.Message msg) {
@@ -106,16 +101,21 @@ public class MainActivity extends Activity implements View.OnClickListener {
         city_name_Tv.setText(todayWeather.getCity() + "天气");
         cityTv.setText(todayWeather.getCity());
         timeTv.setText(todayWeather.getUpdatetime() + "发布");
-        humidityTv.setText("湿度：" + todayWeather.getShidu());
+        humidityTv.setText("湿度:" + todayWeather.getShidu());
         pmDataTv.setText(todayWeather.getPm25());
         pmQualityTv.setText(todayWeather.getQuality());
         weekTv.setText(todayWeather.getDate());
         temperatureTv.setText(todayWeather.getHigh() + "~" + todayWeather.getLow());
         climateTv.setText(todayWeather.getType());
         windTv.setText("风力:" + todayWeather.getFengli());
-        timepTv.setText("实时温度：" + todayWeather.getWendu());
+        timepTv.setText("实时温度:" + todayWeather.getWendu());
+
+
         Toast.makeText(MainActivity.this, "更新成功！", Toast.LENGTH_SHORT).show();
     }
+
+
+
 
     void initView() {
         city_name_Tv = (TextView) findViewById(R.id.title_city_name);
@@ -308,6 +308,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                                 //Log.d("myWeather", "type: " + xmlPullParser.getText());
                                 typeCount++;
                             }
+
                         }
                         break;
                     case XmlPullParser.END_TAG:
