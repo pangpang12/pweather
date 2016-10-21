@@ -1,6 +1,7 @@
 package cn.edu.pku.zhangqixun.miniweather;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -30,12 +31,15 @@ import cn.edu.pku.zhangqixun.bean.TodayWeather;
 import cn.edu.pku.zhangqixun.util.NetUtil;
 
 
+
 /**
  * Created on 2016/9/24.
  */
 public class MainActivity extends Activity implements View.OnClickListener {
     private static final int UPDATE_TODAY_WEATHER = 1;
+
     private ImageView mUpdateBtn;
+    private ImageView mCitySelect;
     private TextView cityTv, timeTv, humidityTv, weekTv, pmDataTv, pmQualityTv,
             temperatureTv, climateTv, windTv, city_name_Tv,timepTv;
     private ImageView weatherImg, pmImg;
@@ -57,7 +61,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,15 +77,24 @@ public class MainActivity extends Activity implements View.OnClickListener {
             Toast.makeText(MainActivity.this, "网络挂了!", Toast.LENGTH_LONG).show();
 
         }
+        mCitySelect=(ImageView)findViewById(R.id.title_city_manager);
+        mCitySelect.setOnClickListener(this);
+        initView();
 
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+
     }
+
 
     @Override
     public void onClick(View view) {
+        if (view.getId() == R.id.title_city_manager){
+
+            Intent i= new Intent(this,SelectCity.class);
+            //startActivity(i);
+            startActivityForResult(i,1);
+        }
         if (view.getId() == R.id.title_update_btn) {
             SharedPreferences Sharedpreferences = getSharedPreferences("config", MODE_PRIVATE);
             String cityCode = Sharedpreferences.getString("main_city_code", "101010100");
@@ -94,7 +106,21 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 Log.d("myWeather", "网络挂了");
                 Toast.makeText(MainActivity.this, "网络挂了!", Toast.LENGTH_LONG).show();
             }
-            initView();
+
+        }
+    }
+    protected void onActivityResult(int requestCode, int resultCode,Intent data){
+        if (requestCode == 1&& resultCode == RESULT_OK){
+            String newCityCode=data.getStringExtra("cityCode");
+            Log.d("myWeather","选择城市的代码为:"+newCityCode);
+
+            if (NetUtil.getNetworkState(this) != NetUtil.NETWORK_NONE){
+                Log.d("myWeather","网络OK");
+                queryWeatherCode(newCityCode);
+            }else {
+                Log.d("myWeather","网络挂了");
+                Toast.makeText(MainActivity.this,"网络挂了",Toast.LENGTH_LONG).show();
+            }
         }
     }
     void updateTodayWeather(TodayWeather todayWeather) {
