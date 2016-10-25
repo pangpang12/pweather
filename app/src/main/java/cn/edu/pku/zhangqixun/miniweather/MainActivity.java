@@ -12,9 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
-
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -57,10 +54,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
     };
 
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,7 +128,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         temperatureTv.setText(todayWeather.getHigh() + "~" + todayWeather.getLow());
         climateTv.setText(todayWeather.getType());
         windTv.setText("风力:" + todayWeather.getFengli());
-        timepTv.setText("实时温度:" + todayWeather.getWendu());
+        timepTv.setText("实时温度:" + todayWeather.getWendu()+"℃");
 
         int a=Integer.valueOf(todayWeather.getPm25());
         if (a>=0 &&a <=50){
@@ -282,37 +276,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             }
         }).start();
     }
-//
-//   private void parseXML(String xmldata) {
-//        try {
-//            XmlPullParserFactory fac = XmlPullParserFactory.newInstance();
-//            XmlPullParser xmlPullParser = fac.newPullParser();
-//            xmlPullParser.setInput(new StringReader(xmldata));
-//            int eventType = xmlPullParser.getEventType();
-//            Log.d("myWeather", "parseXMI");
-//            while (eventType != XmlPullParser.END_DOCUMENT) {
-//                switch (eventType) {
-//                   case XmlPullParser.START_DOCUMENT:
-//                        break;
-//                    case XmlPullParser.START_TAG:
-//                        if (xmlPullParser.getName().equals("city")) {
-//                            eventType = xmlPullParser.next();
-//                            Log.d("myWeather", "city:" + xmlPullParser.getText());
-//                        } else if (xmlPullParser.getName().equals("updatetime")) {
-//                            eventType = xmlPullParser.next();
-//                            Log.d("myWeather", "updatetime: " + xmlPullParser.getText());
-//                        }break;
-//                    case XmlPullParser.END_TAG:
-//                        break;
-//                }
-//                eventType = xmlPullParser.next();
-//            }
-//        } catch (XmlPullParserException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+
 
     private TodayWeather parseXML(String xmldata) {
         TodayWeather todayWeather = null;
@@ -409,45 +373,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         return todayWeather;
     }
 
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//
-//        // ATTENTION: This was auto-generated to implement the App Indexing API.
-//        // See https://g.co/AppIndexing/AndroidStudio for more information.
-//        client.connect();
-//        Action viewAction = Action.newAction(
-//                Action.TYPE_VIEW, // TODO: choose an action type.
-//                "Main Page", // TODO: Define a title for the content shown.
-//                // TODO: If you have web page content that matches this app activity's content,
-//                // make sure this auto-generated web page URL is correct.
-//                // Otherwise, set the URL to null.
-//                Uri.parse("http://host/path"),
-//                // TODO: Make sure this auto-generated app URL is correct.
-//                Uri.parse("android-app://cn.edu.pku.zhangqixun.miniweather/http/host/path")
-//        );
-//        AppIndex.AppIndexApi.start(client, viewAction);
-//    }
-//
-//    @Override
-//    public void onStop() {
-//        super.onStop();
-//
-//        // ATTENTION: This was auto-generated to implement the App Indexing API.
-//        // See https://g.co/AppIndexing/AndroidStudio for more information.
-//        Action viewAction = Action.newAction(
-//                Action.TYPE_VIEW, // TODO: choose an action type.
-//                "Main Page", // TODO: Define a title for the content shown.
-//                // TODO: If you have web page content that matches this app activity's content,
-//                // make sure this auto-generated web page URL is correct.
-//                // Otherwise, set the URL to null.
-//                Uri.parse("http://host/path"),
-//                // TODO: Make sure this auto-generated app URL is correct.
-//                Uri.parse("android-app://cn.edu.pku.zhangqixun.miniweather/http/host/path")
-//        );
-//        AppIndex.AppIndexApi.end(client, viewAction);
-//        client.disconnect();
-//    }
 }
 
 

@@ -82,7 +82,7 @@
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:id="@+id/date"
+                    android:id="@+id/wind"
                     android:text="30/09/16"
                     android:textColor="#ffffffff"
                     android:gravity="center"
@@ -291,8 +291,8 @@
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:id="@+id/wind"
-                    android:text="微风"
+                    android:id="@+id/date"
+                    android:text="多运动"
                     android:textColor="#ffffffff"
                     android:textSize="32.0sp"
                     android:gravity="center" />
