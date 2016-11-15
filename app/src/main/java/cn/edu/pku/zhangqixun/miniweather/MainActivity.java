@@ -38,7 +38,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private ImageView mUpdateBtn;
     private ImageView mCitySelect;
     private TextView cityTv, timeTv, humidityTv, weekTv, pmDataTv, pmQualityTv,
-            temperatureTv, climateTv, windTv, city_name_Tv,timepTv;
+            temperatureTv, climateTv, windTv, city_name_Tv,timepTv,sportdegerrTv;
     private ImageView weatherImg, pmImg;
 
 
@@ -81,17 +81,28 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
 
-    @Override
+    ////////
+    @Override////////after
     public void onClick(View view) {
-        if (view.getId() == R.id.title_city_manager){
 
-            Intent i= new Intent(this,SelectCity.class);
+        if (view.getId() == R.id.title_city_manager) {
+
+            Intent i = new Intent(this, SelectCity.class);
+
             //startActivity(i);
-            startActivityForResult(i,1);
+            startActivityForResult(i, 1);
         }
+
+
+
         if (view.getId() == R.id.title_update_btn) {
-            SharedPreferences Sharedpreferences = getSharedPreferences("config", MODE_PRIVATE);
-            String cityCode = Sharedpreferences.getString("main_city_code", "101010100");
+
+            SharedPreferences io = getSharedPreferences("config",MODE_PRIVATE);
+            String cityCode = io.getString("code","");
+            //SharedPreferences Sharedpreferences = getSharedPreferences("config", MODE_PRIVATE);
+            //String cityCode = Sharedpreferences.getString("main_city_code","101010100");
+
+
             Log.d("myWeather", cityCode);
             if (NetUtil.getNetworkState(this) != NetUtil.NETWORK_NONE) {
                 Log.d("myWeather", "网络ok");
@@ -107,7 +118,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
         if (requestCode == 1&& resultCode == RESULT_OK){
             String newCityCode=data.getStringExtra("cityCode");
             Log.d("myWeather","选择城市的代码为:"+newCityCode);
-
+            //
+            SharedPreferences io = getSharedPreferences("config",MODE_PRIVATE);
+            SharedPreferences.Editor editor= io.edit();
+            editor.putString("code",newCityCode);
+            editor.commit();
+            Toast.makeText(this,"city updated",Toast.LENGTH_LONG).show();
+            //
             if (NetUtil.getNetworkState(this) != NetUtil.NETWORK_NONE){
                 Log.d("myWeather","网络OK");
                 queryWeatherCode(newCityCode);
@@ -115,6 +132,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 Log.d("myWeather","网络挂了");
                 Toast.makeText(MainActivity.this,"网络挂了",Toast.LENGTH_LONG).show();
             }
+
         }
     }
     void updateTodayWeather(TodayWeather todayWeather) {
@@ -129,6 +147,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         climateTv.setText(todayWeather.getType());
         windTv.setText("风力:" + todayWeather.getFengli());
         timepTv.setText("实时温度:" + todayWeather.getWendu()+"℃");
+        sportdegerrTv.setText(todayWeather.getSuggest());
 
         int a=Integer.valueOf(todayWeather.getPm25());
         if (a>=0 &&a <=50){
@@ -186,15 +205,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
             weatherImg.setImageResource(R.drawable.biz_plugin_weather_zhongyu);
         }
 
-
-
-
-
     Toast.makeText(MainActivity.this, "更新成功！", Toast.LENGTH_SHORT).show();
     }
-
-
-
 
     void initView() {
         city_name_Tv = (TextView) findViewById(R.id.title_city_name);
@@ -209,7 +221,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
         climateTv = (TextView) findViewById(R.id.climate);
         windTv = (TextView) findViewById(R.id.wind);
         timepTv = (TextView) findViewById(R.id.timep);
+        sportdegerrTv = (TextView) findViewById(R.id.sport);
         weatherImg = (ImageView) findViewById(R.id.weather_img);
+
+
 
         city_name_Tv.setText("N/A");
         cityTv.setText("N/A");
@@ -222,6 +237,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         climateTv.setText("N/A");
         windTv.setText("N/A");
         timepTv.setText("N/A");
+        sportdegerrTv.setText("N/A");
     }
     /**
      * @param cityCode

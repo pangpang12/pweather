@@ -18,6 +18,8 @@ public class TodayWeather {
     private String high;
     private String low;
     private String type;
+    private String number;
+    private String suggest;
     private ImageView weatherImg, pmImg;
 
 
@@ -46,6 +48,8 @@ public class TodayWeather {
     public String getLow() {return low;}
     public String getType() {return type;}
     public String getFengli() {return fengli;}
+    public String getNumber() {return number;}
+    public String getSuggest() {return suggest;}
     public void setDate(String date){
         this.date = date;
     }
@@ -66,6 +70,8 @@ public class TodayWeather {
     public void setQuality(String quality) { this.quality = quality; }
     public void setFengxiang(String fengxiang) { this.fengxiang = fengxiang; }
     public void setFengli(String fengli) { this.fengli = fengli; }
+    public void setNumber(String number) {this.number = number;}
+    public void setSuggest(String suggest) {this.suggest = suggest;}
 
 
 
@@ -85,6 +91,7 @@ public class TodayWeather {
                 ",high='" + high + '\'' +
                 ",low='" + low + '\'' +
                 ",type='" + type + '\'' +
+                ",suggest='"+suggest + '\''+
                 '}';
 
     }
