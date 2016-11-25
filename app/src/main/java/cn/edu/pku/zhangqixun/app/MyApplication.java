@@ -24,6 +24,9 @@ public class MyApplication extends Application {
     private CityDB mCityDB;
 
     private List<City> mCityList;
+    //
+
+    //
 
     @Override
     public void onCreate(){
@@ -62,6 +65,7 @@ public class MyApplication extends Application {
     public List<City> getCityList(){
         return mCityList;
     }
+
     public static MyApplication getInstance(){
         return mApplication;
     }

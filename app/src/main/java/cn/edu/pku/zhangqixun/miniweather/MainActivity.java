@@ -9,6 +9,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +37,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private static final int UPDATE_TODAY_WEATHER = 1;
 
     private ImageView mUpdateBtn;
+    //private ImageView mUpdateprogessBtn;
+    private ProgressBar nUpdateprogessBtn;
     private ImageView mCitySelect;
     private TextView cityTv, timeTv, humidityTv, weekTv, pmDataTv, pmQualityTv,
             temperatureTv, climateTv, windTv, city_name_Tv,timepTv,sportdegerrTv;
@@ -62,6 +65,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.weather_info);
         mUpdateBtn = (ImageView) findViewById(R.id.title_update_btn);
         mUpdateBtn.setOnClickListener(this);
+        nUpdateprogessBtn = (ProgressBar)findViewById(R.id.title_updateprocess_btn);
+
+
+
 
         if (NetUtil.getNetworkState(this) != NetUtil.NETWORK_NONE) {
             Log.d("myweather", "网络OK");
@@ -96,9 +103,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
         if (view.getId() == R.id.title_update_btn) {
+            //
+            mUpdateBtn.setVisibility(View.INVISIBLE);
+            nUpdateprogessBtn.setVisibility(View.VISIBLE);
+            //
 
             SharedPreferences io = getSharedPreferences("config",MODE_PRIVATE);
             String cityCode = io.getString("code","");
+
+            Toast.makeText(this,"code"+cityCode,Toast.LENGTH_LONG).show();
             //SharedPreferences Sharedpreferences = getSharedPreferences("config", MODE_PRIVATE);
             //String cityCode = Sharedpreferences.getString("main_city_code","101010100");
 
@@ -113,6 +126,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
             }
 
         }
+        //mUpdateBtn.setVisibility(View.VISIBLE);
+        //nUpdateprogessBtn.setVisibility(View.GONE);
     }
     protected void onActivityResult(int requestCode, int resultCode,Intent data){
         if (requestCode == 1&& resultCode == RESULT_OK){
@@ -206,7 +221,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
 
     Toast.makeText(MainActivity.this, "更新成功！", Toast.LENGTH_SHORT).show();
+
+        mUpdateBtn.setVisibility(View.VISIBLE);
+        nUpdateprogessBtn.setVisibility(View.GONE);
+
     }
+
 
     void initView() {
         city_name_Tv = (TextView) findViewById(R.id.title_city_name);
