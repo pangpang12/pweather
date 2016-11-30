@@ -24,6 +24,7 @@ public class MyApplication extends Application {
     private CityDB mCityDB;
 
     private List<City> mCityList;
+
     //
 
     //

@@ -392,7 +392,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
                                 todayWeather.setType(xmlPullParser.getText());
                                 //Log.d("myWeather", "type: " + xmlPullParser.getText());
                                 typeCount++;
+                                //
+                            } else if (xmlPullParser.getName().equals("suggest")){
+                                eventType = xmlPullParser.next();
+                                todayWeather.setSuggest(xmlPullParser.getText());
                             }
+                            //
 
                         }
                         break;

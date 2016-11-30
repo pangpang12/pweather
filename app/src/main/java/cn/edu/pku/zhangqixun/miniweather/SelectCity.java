@@ -37,11 +37,11 @@ public class SelectCity extends Activity implements View.OnClickListener{
     //private TextView cityname;
 
     private ListView mlistview;
-    private ListView mListview1;
 
     MyApplication App;
     ArrayList<String> city = new ArrayList<String>();
     ArrayList<String> number = new ArrayList<String>();
+    ArrayList<String> pinyin = new ArrayList<String>();
     List<City> data = new ArrayList<City>();
 
     String SelectedNo;
@@ -60,7 +60,6 @@ public class SelectCity extends Activity implements View.OnClickListener{
         //cityname=(TextView)findViewById(R.id.title_name);
 
         mlistview=(ListView)findViewById(R.id.list_view);
-        mListview1=(ListView)findViewById(R.id.search_list);
 
         App = (MyApplication)getApplication();
         data=App.getCityList();
@@ -69,20 +68,23 @@ public class SelectCity extends Activity implements View.OnClickListener{
         while (i<data.size()){
             city.add(data.get(i).getCity().toString());
             number.add(data.get(i).getNumber().toString());
+            pinyin.add(data.get(i).getAllPY().toString());
             i++;
         }
 
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(SelectCity.this,android.R.layout.simple_list_item_1,city);
-        mlistview.setAdapter(adapter);
 
-        mlistview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?>adapterView,View view,int i,long l){
-                Toast.makeText(SelectCity.this,"You have clicked:"+city.get(i),
-                        Toast.LENGTH_SHORT).show();
-                SelectedNo=number.get(i);
-            }
-        });
+
+        //ArrayAdapter<String> adapter=new ArrayAdapter<String>(SelectCity.this,android.R.layout.simple_list_item_1,city);
+        //mlistview.setAdapter(adapter);
+
+        //mlistview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            //@Override
+            //public void onItemClick(AdapterView<?>adapterView,View view,int i,long l){
+                //Toast.makeText(SelectCity.this,"You have clicked:"+city.get(i),
+                        //Toast.LENGTH_SHORT).show();
+                //SelectedNo=number.get(i);
+            //}
+        //});
     }
 
     TextWatcher mTextWatcher = new TextWatcher() {
@@ -94,47 +96,32 @@ public class SelectCity extends Activity implements View.OnClickListener{
             tmp=charSequence;
             Log.d("myapp","beforeTextChanged"+tmp);
         }
+
+        //MyApplication App;
+        //ArrayList<String> city1 = new ArrayList<String>();//done
+        //ArrayList<String> number1 = new ArrayList<String>();//done
+        //ArrayList<String> pinyin1 = new ArrayList<String>();
+        //ArrayList<String> city2 = new ArrayList<String>();//added
+        //ArrayList<String> number2 = new ArrayList<String>();//added
+        //ArrayList<String> pinyin2 = new ArrayList<String>();
+        //List<City> data1 = new ArrayList<City>();
+
         @Override
+
+
         public void onTextChanged(CharSequence charSequence,int i,int i2,int i3){
-            mlistview.setVisibility(View.GONE);
-            mListview1.setVisibility(View.VISIBLE);
+
             mTextView.setText(charSequence);
             Log.d("myapp","onTextChanged"+charSequence);
 
-            i=0;
-            i2=0;
-            while (i<data.size()){
-                if (data.get(i).getAllPY().contentEquals(tmp)){
-                    i2++;
-
-                }
-                else{
-                    data.remove(i);
-                }
-                i++;
-            }
-
-            ArrayAdapter<String> adapter=new ArrayAdapter<String>(SelectCity.this,android.R.layout.simple_list_item_1,city);
-            mListview1.setAdapter(adapter);
-
-            mListview1.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-                @Override
-                public void onItemClick(AdapterView<?>adapterView,View view,int i,long l){
-                    Toast.makeText(SelectCity.this,"You have clicked:"+city.get(i),
-                            Toast.LENGTH_SHORT).show();
-                    SelectedNo=number.get(i);
-                }
-            });
-
-
-
-
-
         }
+
         @Override
         public void afterTextChanged(Editable editable){
             editStart=mEditText.getSelectionStart();
             editEnd=mEditText.getSelectionEnd();
+           
+
             if (tmp.length()>16){
                 Toast.makeText(SelectCity.this,"The input is overlonged!",Toast.LENGTH_SHORT).show();
                 editable.delete(editStart-1,editEnd);
@@ -147,16 +134,7 @@ public class SelectCity extends Activity implements View.OnClickListener{
             Log.d("myapp","afterTextChanged:");
         }
 
-
-
-        //
-        //@Override
-        //public void String toFisrstPY(String qpt){
     };
-
-
-
-
 
     @Override
     public void onClick(View v){
@@ -174,10 +152,5 @@ public class SelectCity extends Activity implements View.OnClickListener{
         }
     }
 
-    //
-    //void updatetodaywerther(TodayWeather todayWeather){
-        //cityname.setText("当前城市："+todayWeather.getCity());
-    //}
-    //
 }
 //http://mobile100.zhangqx.com/assets/docs/lects/service.pdf

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF48F5D6">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="这是一个菜鸟的作品，请别见笑，会一直改进的"
+        android:textColor="#ff000000"
+        android:textSize="22.0sp"
+        android:gravity="center"/>
+
+</LinearLayout>
