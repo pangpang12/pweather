@@ -81,16 +81,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
         mCitySelect=(ImageView)findViewById(R.id.title_city_manager);
         mCitySelect.setOnClickListener(this);
         initView();
-
-
-
-
     }
-
-
     ////////
     @Override////////after
     public void onClick(View view) {
+
+        if (view.getId() == R.id.days6){
+            Intent i =new Intent(this,Futher.class);
+            startActivityForResult(i,1);
+
+        }
 
         if (view.getId() == R.id.title_city_manager) {
 
@@ -99,8 +99,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
             //startActivity(i);
             startActivityForResult(i, 1);
         }
-
-
 
         if (view.getId() == R.id.title_update_btn) {
             //
@@ -126,8 +124,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             }
 
         }
-        //mUpdateBtn.setVisibility(View.VISIBLE);
-        //nUpdateprogessBtn.setVisibility(View.GONE);
+
+        /////////////////////////////////
+
+
     }
     protected void onActivityResult(int requestCode, int resultCode,Intent data){
         if (requestCode == 1&& resultCode == RESULT_OK){

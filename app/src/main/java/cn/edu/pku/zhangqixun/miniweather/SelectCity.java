@@ -6,6 +6,7 @@ import android.app.Application;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -15,11 +16,18 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
+import java.util.logging.MemoryHandler;
+import java.util.logging.SocketHandler;
 
 import cn.edu.pku.zhangqixun.app.MyApplication;
 import cn.edu.pku.zhangqixun.bean.City;
@@ -30,108 +38,176 @@ import cn.edu.pku.zhangqixun.db.CityDB;
  * Created by Administrator on 2016/10/18 0018.
  */
 public class SelectCity extends Activity implements View.OnClickListener{
+    //private static final int Len = 1;
     private ImageView mBackbtn;
-
+    private TextView mOKbtn;
     private TextView mTextView;
     private EditText mEditText;
     //private TextView cityname;
+    public ListView mlistview;
 
-    private ListView mlistview;
+    private SimpleAdapter adapter;
 
     MyApplication App;
-    ArrayList<String> city = new ArrayList<String>();
+    ArrayList<Map<String,String>> ndata = new ArrayList<Map<String, String>>();
+    ArrayList<String> citypinyin = new ArrayList<String>();
     ArrayList<String> number = new ArrayList<String>();
-    ArrayList<String> pinyin = new ArrayList<String>();
     List<City> data = new ArrayList<City>();
-
     String SelectedNo;
 
+
+    //private android.os.Handler mHandler = new android.os.Handler() {
+        //public void handleMessage(android.os.Message msg) {
+            //switch (msg.what) {
+                //case Len:
+                    //adapter.notifyDataSetChanged();
+                    //break;
+                //default:
+                    //break;
+            //}
+        //}
+    //};
+    ////////////////////////////////////////////////
+
+    //private void getndata(ArrayList<Map<String,String>> ndata){
+        //App=(MyApplication)getApplication();
+        //data=App.getCityList();
+        //Map<String,String> items = new HashMap<String, String>();
+        //int i=0;
+        //while (i<data.size()){
+            //citypinyin.add(data.get(i).getCity().toString()+data.get(i).getAllPY());
+            //number.add(data.get(i).getNumber().toString());
+            //items.put(citypinyin1,citypinyin.get(i));
+            //items.put(numbetr1,number.get(i));
+            //ndata.add(items);
+            //i++;
+        //}
+    //}
+
+    //private void set_mlist_adapter(){
+        //mlistview = (ListView)findViewById(R.id.list_view);
+        //getndata(ndata);
+        //ArrayAdapter<Map<String,String>> adapter=new ArrayAdapter<Map<String, String>>(SelectCity.this,android.R.layout.simple_list_item_1,ndata);
+        //mlistview.setAdapter(adapter);
+        //mlistview.setOnItemClickListener();
+
+    //}
+    /////////////////////////////////////////////
+    //Runnable ech = new Runnable() {
+        //@Override
+        //public void run() {
+            //String ab = mTextView.getText().toString();
+            //ndata.clear();
+            //getndatasum(ndata,ab);
+            //adapter.notifyDataSetChanged();
+        //}
+    //};
+
+    private void getndatasum(ArrayList<Map<String,String>> mdata,String data) {
+        int length = citypinyin.size();
+        for (int i = 0; i < length; ++i) {
+            if (citypinyin.get(i).contains(data)) {
+                Map<String, String> it = new HashMap<String, String>();
+                it.put("citypinyin1", citypinyin.get(i));
+                it.put("numbetr1", number.get(i));
+                mdata.add(it);
+            }
+
+        }
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.select_city);
-
-        mBackbtn = (ImageView)findViewById(R.id.title_back);
+        mBackbtn = (ImageView) findViewById(R.id.title_back);
         mBackbtn.setOnClickListener(this);
-        mTextView=(TextView)findViewById(R.id.t);
-        mEditText=(EditText)findViewById(R.id.search_edit);
+        mOKbtn = (TextView)findViewById(R.id.confirm);
+        mOKbtn.setOnClickListener(this);
+        mTextView = (TextView) findViewById(R.id.t);
+        mEditText = (EditText) findViewById(R.id.search_edit);
         mEditText.addTextChangedListener(mTextWatcher);
-        //cityname=(TextView)findViewById(R.id.title_name);
+        mlistview = (ListView) findViewById(R.id.list_view);
 
-        mlistview=(ListView)findViewById(R.id.list_view);
+        getndata(ndata);
+        SimpleAdapter adapter = new SimpleAdapter(this,ndata,R.layout.items,new String[]{"citypinyin1","numbetr1"},new int[]{R.id.cap,R.id.n});
+        mlistview.setAdapter(adapter);
 
-        App = (MyApplication)getApplication();
+        mlistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(SelectCity.this,"You have clicked"+ndata.get(position).get("citypinyin1"),Toast.LENGTH_LONG).show();
+                SelectedNo=ndata.get(position).get("numbetr1");
+            }
+
+        });
+
+
+    }
+
+    private void getndata(ArrayList<Map<String,String>> ndata){
+        App=(MyApplication)getApplication();
         data=App.getCityList();
 
         int i=0;
         while (i<data.size()){
-            city.add(data.get(i).getCity().toString());
+            Map<String,String> items = new HashMap<String, String>();
+            citypinyin.add(data.get(i).getCity().toString()+data.get(i).getAllPY());
             number.add(data.get(i).getNumber().toString());
-            pinyin.add(data.get(i).getAllPY().toString());
+            items.put("citypinyin1",citypinyin.get(i));
+            items.put("numbetr1",number.get(i));
+            ndata.add(items);
             i++;
         }
 
-
-
-        //ArrayAdapter<String> adapter=new ArrayAdapter<String>(SelectCity.this,android.R.layout.simple_list_item_1,city);
-        //mlistview.setAdapter(adapter);
-
-        //mlistview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            //@Override
-            //public void onItemClick(AdapterView<?>adapterView,View view,int i,long l){
-                //Toast.makeText(SelectCity.this,"You have clicked:"+city.get(i),
-                        //Toast.LENGTH_SHORT).show();
-                //SelectedNo=number.get(i);
-            //}
-        //});
     }
 
     TextWatcher mTextWatcher = new TextWatcher() {
         private CharSequence tmp;
         private int editStart;
         private int editEnd;
+
         @Override
-        public void beforeTextChanged(CharSequence charSequence,int i,int i2,int i3){
-            tmp=charSequence;
-            Log.d("myapp","beforeTextChanged"+tmp);
+        public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+            tmp = charSequence;
+            Log.d("myapp", "beforeTextChanged" + tmp);
         }
 
-        //MyApplication App;
-        //ArrayList<String> city1 = new ArrayList<String>();//done
-        //ArrayList<String> number1 = new ArrayList<String>();//done
-        //ArrayList<String> pinyin1 = new ArrayList<String>();
-        //ArrayList<String> city2 = new ArrayList<String>();//added
-        //ArrayList<String> number2 = new ArrayList<String>();//added
-        //ArrayList<String> pinyin2 = new ArrayList<String>();
-        //List<City> data1 = new ArrayList<City>();
-
         @Override
-
-
-        public void onTextChanged(CharSequence charSequence,int i,int i2,int i3){
+        public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
 
             mTextView.setText(charSequence);
-            Log.d("myapp","onTextChanged"+charSequence);
+            Log.d("myapp", "onTextChanged" + charSequence);
 
         }
 
         @Override
-        public void afterTextChanged(Editable editable){
-            editStart=mEditText.getSelectionStart();
-            editEnd=mEditText.getSelectionEnd();
-           
+        public void afterTextChanged(Editable editable) {
+            editStart = mEditText.getSelectionStart();
+            editEnd = mEditText.getSelectionEnd();
 
-            if (tmp.length()>16){
-                Toast.makeText(SelectCity.this,"The input is overlonged!",Toast.LENGTH_SHORT).show();
-                editable.delete(editStart-1,editEnd);
-                int tmpSelection=editStart;
-                mEditText.setText(editable);
-                mEditText.setSelection(tmpSelection);
+                if (tmp.length() > 16) {
+                    Toast.makeText(SelectCity.this, "The input is overlonged!", Toast.LENGTH_SHORT).show();
+                    editable.delete(editStart - 1, editEnd);
+                    int tmpSelection = editStart;
+                    mEditText.setText(editable);
+                    mEditText.setSelection(tmpSelection);
 
-            }
+                }else
+                    if (tmp.length()!=0)
+                    {
+                    Message msg = new Message();
+                    //msg.what=Len;
+                    //msg.obj=editable;
+                    //mHandler.post(ech);
+                        ndata.clear();
+                        getndatasum(ndata,tmp.toString());
+                        adapter.notifyDataSetChanged();
 
-            Log.d("myapp","afterTextChanged:");
+                }
+
+                Log.d("myapp", "afterTextChanged:");
+
         }
 
     };
@@ -147,9 +223,8 @@ public class SelectCity extends Activity implements View.OnClickListener{
                 break;
             default:
                 break;
-
-
         }
+
     }
 
 }
