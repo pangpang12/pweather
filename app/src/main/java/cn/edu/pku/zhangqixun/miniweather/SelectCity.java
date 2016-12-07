@@ -126,12 +126,22 @@ public class SelectCity extends Activity implements View.OnClickListener{
         mOKbtn.setOnClickListener(this);
         mTextView = (TextView) findViewById(R.id.t);
         mEditText = (EditText) findViewById(R.id.search_edit);
-        mEditText.addTextChangedListener(mTextWatcher);
+
         mlistview = (ListView) findViewById(R.id.list_view);
 
+        App=(MyApplication)getApplication();
+        data=App.getCityList();
+        for (int i=0;i<data.size();i++){
+            citypinyin.add(data.get(i).getCity()+data.get(i).getAllPY());
+            number.add(data.get(i).getNumber());
+        }
+
         getndata(ndata);
+        mEditText.addTextChangedListener(mTextWatcher);
+
         SimpleAdapter adapter = new SimpleAdapter(this,ndata,R.layout.items,new String[]{"citypinyin1","numbetr1"},new int[]{R.id.cap,R.id.n});
         mlistview.setAdapter(adapter);
+        //adapter.notifyDataSetChanged();
 
         mlistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -145,18 +155,14 @@ public class SelectCity extends Activity implements View.OnClickListener{
 
     }
 
-    private void getndata(ArrayList<Map<String,String>> ndata){
-        App=(MyApplication)getApplication();
-        data=App.getCityList();
+    private void getndata(ArrayList<Map<String,String>> ndata1){
 
         int i=0;
         while (i<data.size()){
             Map<String,String> items = new HashMap<String, String>();
-            citypinyin.add(data.get(i).getCity().toString()+data.get(i).getAllPY());
-            number.add(data.get(i).getNumber().toString());
             items.put("citypinyin1",citypinyin.get(i));
             items.put("numbetr1",number.get(i));
-            ndata.add(items);
+            ndata1.add(items);
             i++;
         }
 
@@ -201,7 +207,17 @@ public class SelectCity extends Activity implements View.OnClickListener{
                     //msg.obj=editable;
                     //mHandler.post(ech);
                         ndata.clear();
-                        getndatasum(ndata,tmp.toString());
+                        int length = citypinyin.size();
+                        for (int i = 0; i < length; ++i) {
+                            if (citypinyin.get(i).contains(tmp)) {
+                                Map<String, String> it = new HashMap<String, String>();
+                                it.put("citypinyin1", citypinyin.get(i));
+                                it.put("numbetr1", number.get(i));
+                                ndata.add(it);
+                            }
+
+                        }
+                       // getndatasum(ndata,tmp.toString());
                         adapter.notifyDataSetChanged();
 
                 }
@@ -209,7 +225,7 @@ public class SelectCity extends Activity implements View.OnClickListener{
                 Log.d("myapp", "afterTextChanged:");
 
         }
-
+//
     };
 
     @Override

@@ -1,6 +1,9 @@
 package cn.edu.pku.zhangqixun.bean;
 
+import android.view.View;
 import android.widget.ImageView;
+
+import java.util.List;
 
 /**
  * Created by Administrator on 2016/10/17 0017.
@@ -21,6 +24,14 @@ public class TodayWeather {
     private String number;
     private String suggest;
     private ImageView weatherImg, pmImg;
+
+    private List<View> vs;
+    private List<String> hit;
+    private List<String> lot;
+    private List<String> fx;
+    private List<String> fl;
+    private List<String> dd;
+    private List<String> tp;
 
 
     public String getCity(){

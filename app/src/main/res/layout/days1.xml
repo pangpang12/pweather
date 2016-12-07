@@ -13,7 +13,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
             <TextView
-                android:id="@+id/dt0"
+                android:id="@+id/dt3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Hello"
@@ -26,7 +26,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
             <TextView
-                android:id="@+id/tm0"
+                android:id="@+id/tm3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="温暖"
@@ -45,7 +45,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
             <TextView
-                android:id="@+id/p10"
+                android:id="@+id/p13"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="晴"
@@ -58,7 +58,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
             <ImageView
-                android:id="@+id/tu0"
+                android:id="@+id/tu3"
                 android:layout_gravity="center"
                 android:layout_width="40.0dip"
                 android:layout_height="40.0dip"
@@ -76,7 +76,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
             <TextView
-                android:id="@+id/fx0"
+                android:id="@+id/fx3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="妖风"
@@ -89,7 +89,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
             <TextView
-                android:id="@+id/fl0"
+                android:id="@+id/fl3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="无极"
@@ -111,7 +111,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
             <TextView
-                android:id="@+id/dt1"
+                android:id="@+id/dt4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="每一天"
@@ -124,7 +124,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
             <TextView
-                android:id="@+id/tm1"
+                android:id="@+id/tm4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="温暖"
@@ -143,7 +143,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
             <TextView
-                android:id="@+id/p11"
+                android:id="@+id/p14"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="晴"
@@ -156,7 +156,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
             <ImageView
-                android:id="@+id/tu1"
+                android:id="@+id/tu4"
                 android:layout_gravity="center"
                 android:layout_width="40.0dip"
                 android:layout_height="40.0dip"
@@ -174,7 +174,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
             <TextView
-                android:id="@+id/fx1"
+                android:id="@+id/fx4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="妖风"
@@ -187,7 +187,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
             <TextView
-                android:id="@+id/fl1"
+                android:id="@+id/fl4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="无极"
@@ -210,7 +210,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
             <TextView
-                android:id="@+id/dt2"
+                android:id="@+id/dt5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="每一天"
@@ -223,10 +223,10 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
             <TextView
-                android:id="@+id/tm2"
+                android:id="@+id/tm5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="2~5"
+                android:text="温暖"
                 android:textSize="12.0sp"
                 android:textColor="#ffffffff"
                 android:gravity="center"/>
@@ -242,7 +242,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
             <TextView
-                android:id="@+id/p12"
+                android:id="@+id/p15"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="晴"
@@ -255,7 +255,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
             <ImageView
-                android:id="@+id/tu2"
+                android:id="@+id/tu5"
                 android:layout_gravity="center"
                 android:layout_width="40.0dip"
                 android:layout_height="40.0dip"
@@ -273,7 +273,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
             <TextView
-                android:id="@+id/fx2"
+                android:id="@+id/fx5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="妖风"
@@ -286,7 +286,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
             <TextView
-                android:id="@+id/fl2"
+                android:id="@+id/fl5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="无极"
@@ -303,3 +303,4 @@
 
 
 </LinearLayout>
+
