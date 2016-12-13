@@ -6,11 +6,13 @@
     <!--title-->
     <LinearLayout
         android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="45.0dip"
         android:layout_weight="1"
-        android:background="#cd2626">
+        android:background="#cd2626"
+        android:orientation="horizontal">
         <RelativeLayout
+            android:id="@+id/sumtitle"
             android:layout_width="match_parent"
             android:layout_height="45.0dip"
             android:background="#ffcd2626"
@@ -20,8 +22,6 @@
                 android:layout_width="45.0dip"
                 android:layout_height="45.0dip"
                 android:src="@drawable/title_city" />
-
-
             <ImageView
                 android:id="@+id/city_seperator"
                 android:layout_width="1.0dip"
@@ -71,28 +71,26 @@
         </RelativeLayout>
 
     </LinearLayout>
-    <!--in-->
     <LinearLayout
-        android:id="@+id/weather_today"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="12"
         android:background="@drawable/biz_plugin_weather_shenzhen_bg"
         android:orientation="vertical">
         <!--date PM2.5-->
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
+            android:layout_width="fill_parent"
+            android:layout_height="45.0dip"
+            android:layout_weight="1"
             android:orientation="horizontal">
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="fill_parent"
                 android:layout_weight="2">
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/wind"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/date"
                     android:text="30/09/16"
                     android:textColor="#ffffffff"
                     android:gravity="center"
@@ -100,67 +98,54 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="fill_parent"
                 android:layout_weight="1">
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/pm2_5"
-                    android:text="PM2.5"
-                    android:textColor="#ffffffff"
-                    android:gravity="center"
-                    android:textSize="18.0sp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
                     android:id="@+id/pm_data"
-                    android:text="220"
+                    android:text="PM2.5:100"
                     android:textColor="#ffffffff"
                     android:gravity="center"
                     android:textSize="18.0sp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="fill_parent"
                 android:layout_weight="1">
                 <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
                     android:id="@+id/pm2_5_img"
                     android:src="@drawable/biz_plugin_weather_0_50"/>
             </LinearLayout>
         </LinearLayout>
         <!--time and tdegerr-->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-
+            android:layout_weight="1"
             android:orientation="horizontal">
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="2">
+                android:layout_height="fill_parent"
+                android:layout_weight="1">
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
                     android:id="@+id/city"
                     android:text="北京"
                     android:textColor="#ffffffff"
-                    android:textSize="18.0sp"
+                    android:textSize="20.0dip"
                     android:gravity="center"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="fill_parent"
                 android:layout_weight="1">
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="fill_parent"
                     android:id="@+id/time"
                     android:text="18:00更新"
                     android:textColor="#ffffffff"
@@ -169,13 +154,26 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="fill_parent"
                 android:layout_weight="1">
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/wind"
+                    android:text="微风"
+                    android:textColor="#ffffffff"
+                    android:textSize="18.0sp"
+                    android:gravity="center" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
                     android:id="@+id/pm2_5_quality"
-                    android:text="重度污染"
+                    android:text="轻度污染"
                     android:textColor="#ffffffff"
                     android:textSize="18.0sp"
                     android:gravity="center"/>
@@ -183,30 +181,30 @@
         </LinearLayout>
         <!--dry wet weekday temperature-->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-
+            android:layout_weight='1'
             android:orientation="horizontal">
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="fill_parent"
                 android:layout_weight="1">
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
                     android:id="@+id/humidity"
-                    android:text="湿度：57%"
+                    android:text="湿度：64"
                     android:textColor="#ffffffff"
                     android:textSize="18.0sp"
                     android:gravity="center"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="fill_parent"
                 android:layout_weight="1">
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
                     android:id="@+id/week_today"
                     android:text="Thursday"
                     android:textColor="#ffffffff"
@@ -215,11 +213,11 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="fill_parent"
                 android:layout_weight="1">
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
                     android:id="@+id/temperature"
                     android:text="2℃~5℃"
                     android:textColor="#ffffffff"
@@ -229,71 +227,76 @@
         </LinearLayout>
         <!--pictures-->
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            >
-            <RelativeLayout
-                android:id="@+id/picture"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-
+            android:layout_width="fill_parent"
+            android:layout_height="45.0dip"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1">
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentLeft="true"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
                     android:id="@+id/timep"
                     android:text="实时温度：5℃"
                     android:textColor="#ffffffff"
                     android:textSize="18.0sp"
                     android:gravity="center"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1">
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignRight="@+id/timep"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
                     android:id="@+id/climate"
                     android:text="晴"
                     android:textColor="#ffffffff"
                     android:textSize="18.0sp"
                     android:gravity="center"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1">
                 <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:l="@+id/climate"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
                     android:id="@+id/weather_img"
                     android:src="@drawable/biz_plugin_weather_qing"
+                    android:textColor="#ffffffff"
+                    android:textSize="18.0sp"
+                    android:scrollbarSize="1sp"
                     android:gravity="center"/>
-            </RelativeLayout>
-
+            </LinearLayout>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/sport"
-                android:text="多运动"
-                android:textColor="#ffffffff"
-                android:textSize="12.0sp"
-                android:gravity="center" />
-        </LinearLayout>
-
         <!--6days-->
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="fill_parent"
+            android:layout_height="80.0dp"
+            android:layout_weight="1">
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewpager1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v4.view.ViewPager>
+
         </LinearLayout>
         <!--else-->
-        <android.support.v4.view.ViewPager
-            android:id="@+id/viewpager1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </android.support.v4.view.ViewPager>
-
-
     </LinearLayout>
+
+
 </LinearLayout>
+
+    <!--else-->
+
+
+
+
+
 
 

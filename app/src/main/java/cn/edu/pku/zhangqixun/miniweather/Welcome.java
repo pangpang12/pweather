@@ -48,11 +48,12 @@ public class Welcome extends Activity implements ViewPager.OnPageChangeListener 
             editor.commit();
             setContentView(R.layout.welcome);
             initViews();
+            initDots();
         }
 
-        initDots();
+        //initDots();
 
-        btn=(Button) views.get(2).findViewById(R.id.btn);
+        btn=(Button)views.get(2).findViewById(R.id.btn);//
         btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -94,9 +95,9 @@ public class Welcome extends Activity implements ViewPager.OnPageChangeListener 
     public void onPageSelected(int position) {
         for (int a=0;a<ids.length;a++){
             if (a==position){
-                dots[a].setImageResource(R.drawable.magnifying_glass);
+                dots[a].setImageResource(R.drawable.image001);
             }else {
-                dots[a].setImageResource(R.drawable.contact_search_box_edittext_keyword_background);
+                dots[a].setImageResource(R.drawable.image002);
             }
         }
 

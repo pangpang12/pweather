@@ -1,305 +1,217 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="horizontal">
+        android:orientation="vertical">
+
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <TextView
-                android:id="@+id/dt0"
-                android:layout_width="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Hello"
-                android:textSize="12.0sp"
-                android:textColor="#ffffffff"
-                android:gravity="center"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <TextView
-                android:id="@+id/tm0"
-                android:layout_width="match_parent"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/tp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="qing"
+                    android:textSize="8.0dp"
+                    android:textColor="#FFFFFFFF"
+                    android:gravity="center"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="温暖"
-                android:textSize="12.0sp"
-                android:textColor="#ffffffff"
-                android:gravity="center"/>
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
-        android:orientation="horizontal">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <TextView
-                android:id="@+id/p10"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="晴"
-                android:textSize="12.0sp"
-                android:textColor="#ffffffff"
-                android:gravity="center"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <ImageView
-                android:id="@+id/tu0"
-                android:layout_gravity="center"
-                android:layout_width="40.0dip"
-                android:layout_height="40.0dip"
-                android:src="@drawable/image002"/>
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/tu"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/biz_plugin_weather_daxue"/>
+            </LinearLayout>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/fx"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="dongfeng"
+                    android:textSize="8.0dp"
+                    android:textColor="#FFFFFFFF"
+                    android:gravity="center"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/fl"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="2ji"
+                    android:textSize="8.0dp"
+                    android:textColor="#FFFFFFFF"
+                    android:gravity="center"/>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="horizontal">
+        android:orientation="vertical">
+
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <TextView
-                android:id="@+id/fx0"
-                android:layout_width="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="妖风"
-                android:textSize="12.0sp"
-                android:textColor="#ffffffff"
-                android:gravity="center"/>
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/tp1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="qing"
+                    android:textSize="8.0dp"
+                    android:textColor="#FFFFFFFF"
+                    android:gravity="center"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/tu1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/biz_plugin_weather_daxue"/>
+            </LinearLayout>
         </LinearLayout>
+
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <TextView
-                android:id="@+id/fl0"
-                android:layout_width="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="无极"
-                android:textSize="12.0sp"
-                android:textColor="#ffffffff"
-                android:gravity="center"/>
-
-
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/fx1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="dongfeng"
+                    android:textSize="8.0dp"
+                    android:textColor="#FFFFFFFF"
+                    android:gravity="center"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/fl1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="2ji"
+                    android:textSize="8.0dp"
+                    android:textColor="#FFFFFFFF"
+                    android:gravity="center"/>
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="horizontal">
+        android:orientation="vertical">
+
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <TextView
-                android:id="@+id/dt1"
-                android:layout_width="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="每一天"
-                android:textSize="12.0sp"
-                android:textColor="#ffffffff"
-                android:gravity="center"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <TextView
-                android:id="@+id/tm1"
-                android:layout_width="match_parent"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/tp2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="qing"
+                    android:textSize="8.0dp"
+                    android:textColor="#FFFFFFFF"
+                    android:gravity="center"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="温暖"
-                android:textSize="12.0sp"
-                android:textColor="#ffffffff"
-                android:gravity="center"/>
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
-        android:orientation="horizontal">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <TextView
-                android:id="@+id/p11"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="晴"
-                android:textSize="12.0sp"
-                android:textColor="#ffffffff"
-                android:gravity="center"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <ImageView
-                android:id="@+id/tu1"
-                android:layout_gravity="center"
-                android:layout_width="40.0dip"
-                android:layout_height="40.0dip"
-                android:src="@drawable/image002"/>
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/tu2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/biz_plugin_weather_daxue"/>
+            </LinearLayout>
         </LinearLayout>
 
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal">
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <TextView
-                android:id="@+id/fx1"
-                android:layout_width="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="妖风"
-                android:textSize="12.0sp"
-                android:textColor="#ffffffff"
-                android:gravity="center"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <TextView
-                android:id="@+id/fl1"
-                android:layout_width="match_parent"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/fx2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="dongfeng"
+                    android:textSize="8.0dp"
+                    android:textColor="#FFFFFFFF"
+                    android:gravity="center"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="无极"
-                android:textSize="12.0sp"
-                android:textColor="#ffffffff"
-                android:gravity="center"/>
-
-
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/fl2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="2ji"
+                    android:textSize="8.0dp"
+                    android:textColor="#FFFFFFFF"
+                    android:gravity="center"/>
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <TextView
-                android:id="@+id/dt2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="每一天"
-                android:textSize="12.0sp"
-                android:textColor="#ffffffff"
-                android:gravity="center"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <TextView
-                android:id="@+id/tm2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="2~5"
-                android:textSize="12.0sp"
-                android:textColor="#ffffffff"
-                android:gravity="center"/>
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
-        android:orientation="horizontal">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <TextView
-                android:id="@+id/p12"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="晴"
-                android:textSize="12.0sp"
-                android:textColor="#ffffffff"
-                android:gravity="center"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <ImageView
-                android:id="@+id/tu2"
-                android:layout_gravity="center"
-                android:layout_width="40.0dip"
-                android:layout_height="40.0dip"
-                android:src="@drawable/image002"/>
-        </LinearLayout>
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <TextView
-                android:id="@+id/fx2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="妖风"
-                android:textSize="12.0sp"
-                android:textColor="#ffffffff"
-                android:gravity="center"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <TextView
-                android:id="@+id/fl2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="无极"
-                android:textSize="12.0sp"
-                android:textColor="#ffffffff"
-                android:gravity="center"/>
-
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-
 
 
 </LinearLayout>

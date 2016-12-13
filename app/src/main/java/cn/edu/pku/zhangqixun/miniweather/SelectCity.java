@@ -37,7 +37,7 @@ import cn.edu.pku.zhangqixun.db.CityDB;
 /**
  * Created by Administrator on 2016/10/18 0018.
  */
-public class SelectCity extends Activity implements View.OnClickListener{
+public class SelectCity extends Activity implements View.OnClickListener {
     //private static final int Len = 1;
     private ImageView mBackbtn;
     private TextView mOKbtn;
@@ -46,75 +46,16 @@ public class SelectCity extends Activity implements View.OnClickListener{
     //private TextView cityname;
     public ListView mlistview;
 
-    private SimpleAdapter adapter;
+    private ArrayAdapter adapter;
 
     MyApplication App;
-    ArrayList<Map<String,String>> ndata = new ArrayList<Map<String, String>>();
-    ArrayList<String> citypinyin = new ArrayList<String>();
-    ArrayList<String> number = new ArrayList<String>();
-    List<City> data = new ArrayList<City>();
+    ArrayList<String> city;
+    ArrayList<String> citypinyin;
+    ArrayList<String> cp;
+    ArrayList<String> number;
+    ArrayList<String> nn;
+    List<City> data;
     String SelectedNo;
-
-
-    //private android.os.Handler mHandler = new android.os.Handler() {
-        //public void handleMessage(android.os.Message msg) {
-            //switch (msg.what) {
-                //case Len:
-                    //adapter.notifyDataSetChanged();
-                    //break;
-                //default:
-                    //break;
-            //}
-        //}
-    //};
-    ////////////////////////////////////////////////
-
-    //private void getndata(ArrayList<Map<String,String>> ndata){
-        //App=(MyApplication)getApplication();
-        //data=App.getCityList();
-        //Map<String,String> items = new HashMap<String, String>();
-        //int i=0;
-        //while (i<data.size()){
-            //citypinyin.add(data.get(i).getCity().toString()+data.get(i).getAllPY());
-            //number.add(data.get(i).getNumber().toString());
-            //items.put(citypinyin1,citypinyin.get(i));
-            //items.put(numbetr1,number.get(i));
-            //ndata.add(items);
-            //i++;
-        //}
-    //}
-
-    //private void set_mlist_adapter(){
-        //mlistview = (ListView)findViewById(R.id.list_view);
-        //getndata(ndata);
-        //ArrayAdapter<Map<String,String>> adapter=new ArrayAdapter<Map<String, String>>(SelectCity.this,android.R.layout.simple_list_item_1,ndata);
-        //mlistview.setAdapter(adapter);
-        //mlistview.setOnItemClickListener();
-
-    //}
-    /////////////////////////////////////////////
-    //Runnable ech = new Runnable() {
-        //@Override
-        //public void run() {
-            //String ab = mTextView.getText().toString();
-            //ndata.clear();
-            //getndatasum(ndata,ab);
-            //adapter.notifyDataSetChanged();
-        //}
-    //};
-
-    private void getndatasum(ArrayList<Map<String,String>> mdata,String data) {
-        int length = citypinyin.size();
-        for (int i = 0; i < length; ++i) {
-            if (citypinyin.get(i).contains(data)) {
-                Map<String, String> it = new HashMap<String, String>();
-                it.put("citypinyin1", citypinyin.get(i));
-                it.put("numbetr1", number.get(i));
-                mdata.add(it);
-            }
-
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,50 +63,39 @@ public class SelectCity extends Activity implements View.OnClickListener{
         setContentView(R.layout.select_city);
         mBackbtn = (ImageView) findViewById(R.id.title_back);
         mBackbtn.setOnClickListener(this);
-        mOKbtn = (TextView)findViewById(R.id.confirm);
+        mOKbtn = (TextView) findViewById(R.id.confirm);
         mOKbtn.setOnClickListener(this);
         mTextView = (TextView) findViewById(R.id.t);
         mEditText = (EditText) findViewById(R.id.search_edit);
-
         mlistview = (ListView) findViewById(R.id.list_view);
+        //mEditText.addTextChangedListener(mTextWatcher);
+        App = (MyApplication) getApplication();
+        data = App.getCityList();
+        citypinyin = new ArrayList<String>();
+        number = new ArrayList<String>();
+        city = new ArrayList<String>();
+        cp = new ArrayList<String>();
+        nn = new ArrayList<String>();
 
-        App=(MyApplication)getApplication();
-        data=App.getCityList();
-        for (int i=0;i<data.size();i++){
-            citypinyin.add(data.get(i).getCity()+data.get(i).getAllPY());
+        for (int i = 0; i < data.size(); i++) {
+            citypinyin.add(data.get(i).getCity() + data.get(i).getAllPY());
+            cp.add(data.get(i).getCity());
+            city.add(data.get(i).getCity());
             number.add(data.get(i).getNumber());
+            nn.add(data.get(i).getNumber());
         }
 
-        getndata(ndata);
-        mEditText.addTextChangedListener(mTextWatcher);
-
-        SimpleAdapter adapter = new SimpleAdapter(this,ndata,R.layout.items,new String[]{"citypinyin1","numbetr1"},new int[]{R.id.cap,R.id.n});
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, cp);
         mlistview.setAdapter(adapter);
-        //adapter.notifyDataSetChanged();
-
         mlistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(SelectCity.this,"You have clicked"+ndata.get(position).get("citypinyin1"),Toast.LENGTH_LONG).show();
-                SelectedNo=ndata.get(position).get("numbetr1");
+                Toast.makeText(SelectCity.this, "You have clicked" + cp.get(position), Toast.LENGTH_LONG).show();
+                SelectedNo = nn.get(position);
             }
 
         });
-
-
-    }
-
-    private void getndata(ArrayList<Map<String,String>> ndata1){
-
-        int i=0;
-        while (i<data.size()){
-            Map<String,String> items = new HashMap<String, String>();
-            items.put("citypinyin1",citypinyin.get(i));
-            items.put("numbetr1",number.get(i));
-            ndata1.add(items);
-            i++;
-        }
-
+        mEditText.addTextChangedListener(mTextWatcher);
     }
 
     TextWatcher mTextWatcher = new TextWatcher() {
@@ -192,49 +122,42 @@ public class SelectCity extends Activity implements View.OnClickListener{
             editStart = mEditText.getSelectionStart();
             editEnd = mEditText.getSelectionEnd();
 
-                if (tmp.length() > 16) {
-                    Toast.makeText(SelectCity.this, "The input is overlonged!", Toast.LENGTH_SHORT).show();
-                    editable.delete(editStart - 1, editEnd);
-                    int tmpSelection = editStart;
-                    mEditText.setText(editable);
-                    mEditText.setSelection(tmpSelection);
+            if (tmp.length() > 16) {
+                Toast.makeText(SelectCity.this, "The input is overlonged!", Toast.LENGTH_SHORT).show();
+                editable.delete(editStart - 1, editEnd);
+                int tmpSelection = editStart;
+                mEditText.setText(editable);
+                mEditText.setSelection(tmpSelection);
 
-                }else
-                    if (tmp.length()!=0)
-                    {
-                    Message msg = new Message();
-                    //msg.what=Len;
-                    //msg.obj=editable;
-                    //mHandler.post(ech);
-                        ndata.clear();
-                        int length = citypinyin.size();
-                        for (int i = 0; i < length; ++i) {
-                            if (citypinyin.get(i).contains(tmp)) {
-                                Map<String, String> it = new HashMap<String, String>();
-                                it.put("citypinyin1", citypinyin.get(i));
-                                it.put("numbetr1", number.get(i));
-                                ndata.add(it);
-                            }
-
-                        }
-                       // getndatasum(ndata,tmp.toString());
-                        adapter.notifyDataSetChanged();
-
+            } else {
+                cp.clear();
+                nn.clear();
+                int length = data.size();
+                for (int i = 0; i < length; i++) {
+                    if (data.get(i).getAllPY().indexOf(editable.toString()) > -1) {
+                        cp.add(data.get(i).getCity());
+                        nn.add(data.get(i).getNumber());
+                    }
+                    if (data.get(i).getCity().indexOf(editable.toString()) > -1) {
+                        cp.add(data.get(i).getCity());
+                        nn.add(data.get(i).getNumber());
+                    }
+                    adapter.notifyDataSetChanged();
                 }
 
-                Log.d("myapp", "afterTextChanged:");
-
+            }
+            Log.d("myapp", "afterTextChanged:");
         }
-//
+
     };
 
     @Override
-    public void onClick(View v){
-        switch (v.getId()){
+    public void onClick(View v) {
+        switch (v.getId()) {
             case R.id.title_back:
                 Intent j = new Intent();
                 j.putExtra("cityCode", SelectedNo);
-                setResult(RESULT_OK,j);
+                setResult(RESULT_OK, j);
                 finish();
                 break;
             default:
