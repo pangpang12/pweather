@@ -57,7 +57,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private ProgressBar nUpdateprogessBtn;
     private ImageView mCitySelect;
     private TextView cityTv, timeTv, humidityTv, weekTv, pmDataTv, pmQualityTv,
-            temperatureTv, climateTv, windTv, city_name_Tv,timepTv;
+            temperatureTv, climateTv, windTv, city_name_Tv,timepTv,suggestTv;
     private ImageView weatherImg, pmImg;
     private TextView[] tqq,flf,fxf;
     private ImageView[] ttu;
@@ -72,6 +72,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private ViewPagerAdapter viewPagerAdapter;
     private ViewPager viewPager;
     private List<View> fy;
+    private View start;
 
     //int[] id0={R.id.dt,R.id.dt1,R.id.dt2,R.id.dt3};
     //int[] id1={R.id.t,R.id.t1,R.id.t2,R.id.t3};
@@ -197,6 +198,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
             SharedPreferences io = getSharedPreferences("config",MODE_PRIVATE);
             String cityCode = io.getString("code","");
 
+            //SharedPreferences stu = getSharedPreferences("config",MODE_PRIVATE);
+
+
             Toast.makeText(this,"code"+cityCode,Toast.LENGTH_LONG).show();
             //SharedPreferences Sharedpreferences = getSharedPreferences("config", MODE_PRIVATE);
             //String cityCode = Sharedpreferences.getString("main_city_code","101010100");
@@ -246,6 +250,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         climateTv.setText(todayWeather.getType());
         windTv.setText("风力:" + todayWeather.getFengli());
         timepTv.setText("实时温度:" + todayWeather.getWendu()+"℃");
+        suggestTv.setText(todayWeather.getSuggest());
 
         if (todayWeather.getPm25()==null){
             pmDataTv.setText(null);
@@ -309,19 +314,34 @@ public class MainActivity extends Activity implements View.OnClickListener {
             weatherImg.setImageResource(R.drawable.biz_plugin_weather_zhongyu);
         }
 
-            for (int j=0;j<4;j++){
+        for (int j=0;j<4;j++){
                 //ddd[j].setText(todayWeather.getDd().get(j));
                 //hl[j].setText(todayWeather.getHit().get(j)+"~"+todayWeather.getLot().get(j));
-                tqq[j].setText(todayWeather.getTp().get(j));
-                setimag(tp.get(j),ttu[j]);
-                fxf[j].setText(todayWeather.getFx().get(j));
-                flf[j].setText(todayWeather.getFl().get(j));
-            }
+            tqq[j].setText(todayWeather.getTp().get(j));
+            setimag(tp.get(j),ttu[j]);
+            fxf[j].setText(todayWeather.getFx().get(j));
+            flf[j].setText(todayWeather.getFl().get(j));
+        }
 
+        String[] da = new String[dd.size()];
+        int[] hitt = new int[dd.size()];
+        int[] lott = new int[dd.size()];
+
+        for (int k=0;k<dd.size();k++){
+            String dr = dd.get(k).substring(0,dd.get(k).length()-3);
+            da[k] = dr;
+            String ar = hit.get(k).substring(3);
+            ar = ar.substring(0,ar.length()-1);
+            hitt[k] = Integer.valueOf(ar);
+            String br = lot.get(k).substring(3);
+            br = br.substring(0,br.length()-1);
+            lott[k] = Integer.valueOf(br);
+        }
 
     Toast.makeText(MainActivity.this, "更新成功！", Toast.LENGTH_SHORT).show();
         mUpdateBtn.setVisibility(View.VISIBLE);
         nUpdateprogessBtn.setVisibility(View.GONE);
+
     }
 
     void initView() {
@@ -337,6 +357,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         climateTv = (TextView) findViewById(R.id.climate);
         windTv = (TextView) findViewById(R.id.wind);
         timepTv = (TextView) findViewById(R.id.timep);
+        suggestTv = (TextView) fy.get(2).findViewById(R.id.su);
         weatherImg = (ImageView) findViewById(R.id.weather_img);
 
         city_name_Tv.setText("N/A");
@@ -350,6 +371,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         climateTv.setText("N/A");
         windTv.setText("N/A");
         timepTv.setText("N/A");
+        suggestTv.setText("N/A");
 
         //ddd=new TextView[4];
         //hl=new TextView[4];
@@ -543,6 +565,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                                     todayWeather.setTp(tp);
                                 }
                                 typeCount++;
+                            }else if (xmlPullParser.getName().equals("suggest")){
+                                eventType=xmlPullParser.next();
+                                todayWeather.setSuggest(xmlPullParser.getText());
                             }
 
                         }

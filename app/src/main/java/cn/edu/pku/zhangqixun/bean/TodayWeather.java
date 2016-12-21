@@ -110,6 +110,7 @@ public class TodayWeather {
                 ",high='" + high + '\'' +
                 ",low='" + low + '\'' +
                 ",type='" + type + '\'' +
+                ",suggest='"+suggest + '\''+
                 ",dd'"+ dd + '\'' +
                 ",hit'"+ hit + '\'' +
                 ",lot'"+ lot + '\'' +

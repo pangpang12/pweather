@@ -49,19 +49,20 @@ public class Welcome extends Activity implements ViewPager.OnPageChangeListener 
             setContentView(R.layout.welcome);
             initViews();
             initDots();
+            btn=(Button)views.get(2).findViewById(R.id.btnn);//
+            btn.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view){
+                    Intent i = new Intent(Welcome.this,MainActivity.class);
+                    startActivity(i);
+                    finish();
+                }
+            });
         }
 
         //initDots();
 
-        btn=(Button)views.get(2).findViewById(R.id.btn);//
-        btn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent i = new Intent(Welcome.this,MainActivity.class);
-                startActivity(i);
-                finish();
-            }
-        });
+
 
     }
 
