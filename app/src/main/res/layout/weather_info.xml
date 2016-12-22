@@ -91,7 +91,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:id="@+id/date"
-                    android:text="30/09/16"
+
                     android:textColor="#ffffffff"
                     android:gravity="center"
                     android:textSize="18.0sp"/>

@@ -197,14 +197,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             //
             SharedPreferences io = getSharedPreferences("config",MODE_PRIVATE);
             String cityCode = io.getString("code","");
-
             //SharedPreferences stu = getSharedPreferences("config",MODE_PRIVATE);
-
-
             Toast.makeText(this,"code"+cityCode,Toast.LENGTH_LONG).show();
             //SharedPreferences Sharedpreferences = getSharedPreferences("config", MODE_PRIVATE);
             //String cityCode = Sharedpreferences.getString("main_city_code","101010100");
-
             Log.d("myWeather", cityCode);
             if (NetUtil.getNetworkState(this) != NetUtil.NETWORK_NONE) {
                 Log.d("myWeather", "网络ok");
@@ -213,6 +209,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 Log.d("myWeather", "网络挂了");
                 Toast.makeText(MainActivity.this, "网络挂了!", Toast.LENGTH_LONG).show();
             }
+
+        }
+
+        if (view.getId()==R.id.title_share){
 
         }
 
@@ -227,7 +227,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
             editor.putString("code",newCityCode);
             editor.commit();
             Toast.makeText(this,"city updated",Toast.LENGTH_LONG).show();
-            //
+            ////////////////////////////////////
+
+            ////////////////////////////////////
             if (NetUtil.getNetworkState(this) != NetUtil.NETWORK_NONE){
                 Log.d("myWeather","网络OK");
                 queryWeatherCode(newCityCode);
@@ -322,6 +324,18 @@ public class MainActivity extends Activity implements View.OnClickListener {
             fxf[j].setText(todayWeather.getFx().get(j));
             flf[j].setText(todayWeather.getFl().get(j));
         }
+        ////////////////
+        SharedPreferences tw = getSharedPreferences("config",MODE_PRIVATE);
+        SharedPreferences.Editor editor = tw.edit();
+        editor.putString("city",todayWeather.getCity());
+        editor.putString("time",todayWeather.getUpdatetime());
+        editor.putString("shidu",todayWeather.getShidu());
+        editor.putString("date",todayWeather.getDate());
+        editor.putString("wendu",todayWeather.getHigh()+"~"+todayWeather.getLow());
+        editor.putString("type",todayWeather.getType());
+        editor.putString("fengli",todayWeather.getFengli());
+        editor.putString("ssw",todayWeather.getWendu());
+        editor.commit();
 
         String[] da = new String[dd.size()];
         int[] hitt = new int[dd.size()];
@@ -360,17 +374,27 @@ public class MainActivity extends Activity implements View.OnClickListener {
         suggestTv = (TextView) fy.get(2).findViewById(R.id.su);
         weatherImg = (ImageView) findViewById(R.id.weather_img);
 
-        city_name_Tv.setText("N/A");
-        cityTv.setText("N/A");
-        timeTv.setText("N/A");
-        humidityTv.setText("N/A");
+        SharedPreferences tw = getSharedPreferences("config",MODE_PRIVATE);
+        String cnt = tw.getString("city","");
+        String tt = tw.getString("time","");
+        String s = tw.getString("shidu","");
+        String d = tw.getString("date","");
+        String w = tw.getString("wendu","");
+        String ty = tw.getString("type","");
+        String fl = tw.getString("fengli","");
+        String ss = tw.getString("ssw","");
+
+        city_name_Tv.setText(cnt+"天气");
+        cityTv.setText(cnt);
+        timeTv.setText(tt);
+        humidityTv.setText("湿度:"+s);
         pmDataTv.setText("N/A");
         pmQualityTv.setText("N/A");
-        weekTv.setText("N/A");
-        temperatureTv.setText("N/A");
-        climateTv.setText("N/A");
-        windTv.setText("N/A");
-        timepTv.setText("N/A");
+        weekTv.setText(d);
+        temperatureTv.setText(ss);
+        climateTv.setText(ty);
+        windTv.setText(fl);
+        timepTv.setText(w);
         suggestTv.setText("N/A");
 
         //ddd=new TextView[4];
