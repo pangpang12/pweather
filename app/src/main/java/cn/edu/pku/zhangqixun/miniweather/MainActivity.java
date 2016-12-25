@@ -5,10 +5,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.ContactsContract;
 import android.support.v4.view.ViewPager;
 import android.text.Layout;
 import android.util.Log;
@@ -23,6 +25,12 @@ import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -80,6 +88,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
     int[] id3={R.id.tu,R.id.tu1,R.id.tu2,R.id.tu3};
     int[] id4={R.id.fx,R.id.fx1,R.id.fx2,R.id.fx3};
     int[] id5={R.id.fl,R.id.fl1,R.id.fl2,R.id.fl3};
+
+    int[] hitt;
+    int[] lott;
+    String[] da;
+
+    private LineChart mc0;
 
     private Handler mHandler = new Handler() {
         public void handleMessage(android.os.Message msg) {
@@ -167,6 +181,19 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     }
 
+    //private void initCharts(String[] a, int[] b,LineChart d){
+        //XAxis xAxis = d.getXAxis();
+        //xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        //d.setDescription("");
+        //ArrayList<String> xvalues = new ArrayList<>();
+        //for(int i=0;i<a.length;i++){
+            //xvalues.add(a[i]);
+        //}
+
+
+
+    //}
+
 
     private void initpages(){
         LayoutInflater layoutInflater=LayoutInflater.from(this);
@@ -252,7 +279,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         climateTv.setText(todayWeather.getType());
         windTv.setText("风力:" + todayWeather.getFengli());
         timepTv.setText("实时温度:" + todayWeather.getWendu()+"℃");
-        suggestTv.setText(todayWeather.getSuggest());
+        //suggestTv.setText(todayWeather.getSuggest());
 
         if (todayWeather.getPm25()==null){
             pmDataTv.setText(null);
@@ -337,9 +364,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         editor.putString("ssw",todayWeather.getWendu());
         editor.commit();
 
-        String[] da = new String[dd.size()];
-        int[] hitt = new int[dd.size()];
-        int[] lott = new int[dd.size()];
+        da = new String[dd.size()];
+        hitt = new int[dd.size()];
+        lott = new int[dd.size()];
 
         for (int k=0;k<dd.size();k++){
             String dr = dd.get(k).substring(0,dd.get(k).length()-3);
@@ -351,6 +378,36 @@ public class MainActivity extends Activity implements View.OnClickListener {
             br = br.substring(0,br.length()-1);
             lott[k] = Integer.valueOf(br);
         }
+
+        XAxis xAxis=mc0.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        mc0.setDescription("温度走势");
+        ArrayList<String> xvalues = new ArrayList<>();
+        for (int i=0;i<da.length;i++){
+            xvalues.add(da[i]);
+        }
+        Log.e("wing",xvalues.size()+"");
+        ArrayList<Entry> yValue = new ArrayList<>();
+        for (int i=0;i<hitt.length;i++){
+            yValue.add(new Entry(hitt[i],i));
+        }
+
+        LineDataSet dataSet = new LineDataSet(yValue,"高温");
+
+        ArrayList<Entry> yValue1 = new ArrayList<>();
+
+        for (int i=0;i<hitt.length;i++){
+            yValue1.add(new Entry(lott[i],i));
+        }
+
+        Log.e("wing", yValue.size() + "");
+        LineDataSet dataSet1 = new LineDataSet(yValue1,"低温");
+        dataSet1.setColor(Color.BLACK);
+        ArrayList<LineDataSet> dataSets = new ArrayList<>();
+        dataSets.add(dataSet);
+        dataSets.add(dataSet1);
+        LineData lineData=new LineData(xvalues,dataSets);
+        mc0.setData(lineData);
 
     Toast.makeText(MainActivity.this, "更新成功！", Toast.LENGTH_SHORT).show();
         mUpdateBtn.setVisibility(View.VISIBLE);
@@ -371,8 +428,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         climateTv = (TextView) findViewById(R.id.climate);
         windTv = (TextView) findViewById(R.id.wind);
         timepTv = (TextView) findViewById(R.id.timep);
-        suggestTv = (TextView) fy.get(2).findViewById(R.id.su);
+        //suggestTv = (TextView) fy.get(2).findViewById(R.id.su);
         weatherImg = (ImageView) findViewById(R.id.weather_img);
+        mc0=(LineChart)fy.get(2).findViewById(R.id.c1);
 
         SharedPreferences tw = getSharedPreferences("config",MODE_PRIVATE);
         String cnt = tw.getString("city","");
@@ -395,7 +453,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         climateTv.setText(ty);
         windTv.setText(fl);
         timepTv.setText(w);
-        suggestTv.setText("N/A");
+        mc0.setData(null);
+        //suggestTv.setText("N/A");
+
 
         //ddd=new TextView[4];
         //hl=new TextView[4];
