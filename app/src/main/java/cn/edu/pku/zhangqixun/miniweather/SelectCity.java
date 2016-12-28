@@ -129,23 +129,32 @@ public class SelectCity extends Activity implements View.OnClickListener {
                 mEditText.setText(editable);
                 mEditText.setSelection(tmpSelection);
 
-            } else {
+            } else if(editable.toString().length()==0){
                 cp.clear();
                 nn.clear();
-                int length = data.size();
-                for (int i = 0; i < length; i++) {
-                    if (data.get(i).getAllPY().indexOf(editable.toString()) > -1) {
-                        cp.add(data.get(i).getCity());
-                        nn.add(data.get(i).getNumber());
-                    }
-                    if (data.get(i).getCity().indexOf(editable.toString()) > -1) {
-                        cp.add(data.get(i).getCity());
-                        nn.add(data.get(i).getNumber());
-                    }
-                    adapter.notifyDataSetChanged();
-                }
+                cp.addAll(city);
+                nn.addAll(number);
+                adapter.notifyDataSetChanged();
 
             }
+               else {
+                    cp.clear();
+                    nn.clear();
+                    int length = data.size();
+                    for (int i = 0; i < length; i++) {
+                        if (data.get(i).getAllPY().indexOf(editable.toString()) > -1) {
+                            cp.add(data.get(i).getCity());
+                            nn.add(data.get(i).getNumber());
+                        }
+                        if (data.get(i).getCity().indexOf(editable.toString()) > -1) {
+                            cp.add(data.get(i).getCity());
+                            nn.add(data.get(i).getNumber());
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
+
+                }
+
             Log.d("myapp", "afterTextChanged:");
         }
 
